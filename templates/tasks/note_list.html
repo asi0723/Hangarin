@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Notes - Hangarin{% endblock %}
+{% block content %}
+
+<div class="top-bar">
+    <div class="page-title">
+        <h2>Notes Manager</h2>
+        <p>Manage notes and important information.</p>
+    </div>
+    <div style="display:flex; gap:10px;">
+        <a href="{% url 'note_create' %}" class="btn-new">+ New Note</a>
+        <a href="{% url 'note_list' %}" class="btn-clear">↺ Clear</a>
+    </div>
+</div>
+
+<div class="filter-bar">
+    <form method="get" style="display:flex; gap:12px; align-items:center; width:100%;">
+        <input type="text" name="search" value="{{ search }}" placeholder="Search notes...">
+        <input type="date" name="date" value="{{ request.GET.date }}">
+        <button type="submit" class="btn btn-primary">Apply</button>
+    </form>
+</div>
+
+<div class="card">
+    <table class="dark-table" style="width:100%; border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Content</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for note in page_obj %}
+            <tr>
+                <td style="font-weight:600;">{{ note.task }}</td>
+                <td>{{ note.content|truncatechars:80 }}</td>
+                <td>{{ note.created_at|date:"M d, Y" }}</td>
+                <td>
+                    <a href="{% url 'note_update' note.pk %}" class="btn-icon edit" title="Edit">✏️</a>
+                    <a href="{% url 'note_delete' note.pk %}" class="btn-icon del" title="Delete">🗑️</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4" style="text-align:center; padding:30px; color:#888;">No notes found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1&search={{ search }}">« First</a>
+            <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}">Previous</a>
+        {% endif %}
+        <span class="current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&search={{ search }}">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}&search={{ search }}">Last »</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

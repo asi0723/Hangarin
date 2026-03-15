@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}SubTasks - Hangarin{% endblock %}
+{% block content %}
+
+<div class="top-bar">
+    <div class="page-title">
+        <h2>SubTask Manager</h2>
+        <p>Manage subtasks linked to your main tasks.</p>
+    </div>
+    <div style="display:flex; gap:10px;">
+        <a href="{% url 'subtask_create' %}" class="btn-new">+ New SubTask</a>
+        <a href="{% url 'subtask_list' %}" class="btn-clear">↺ Clear</a>
+    </div>
+</div>
+
+<div class="filter-bar">
+    <form method="get" style="display:flex; gap:12px; align-items:center; width:100%;">
+        <input type="text" name="search" value="{{ search }}" placeholder="Search subtasks...">
+        <input type="date" name="date" value="{{ request.GET.date }}">
+        <select name="sort">
+            <option value="-created_at" {% if sort == '-created_at' %}selected{% endif %}>Newest First</option>
+            <option value="created_at" {% if sort == 'created_at' %}selected{% endif %}>Oldest First</option>
+            <option value="title" {% if sort == 'title' %}selected{% endif %}>Title A-Z</option>
+            <option value="status" {% if sort == 'status' %}selected{% endif %}>Status</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Apply</button>
+    </form>
+</div>
+
+<div class="card">
+    <table class="dark-table" style="width:100%; border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Parent Task</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subtask in page_obj %}
+            <tr>
+                <td style="font-weight:600;">{{ subtask.title }}</td>
+                <td>
+                    {% if subtask.status == 'Completed' %}
+                        <span class="badge badge-completed">Completed</span>
+                    {% elif subtask.status == 'In Progress' %}
+                        <span class="badge badge-progress">In Progress</span>
+                    {% else %}
+                        <span class="badge badge-pending">Pending</span>
+                    {% endif %}
+                </td>
+                <td>{{ subtask.parent_task }}</td>
+                <td>{{ subtask.created_at|date:"M d, Y" }}</td>
+                <td>
+                    <a href="{% url 'subtask_update' subtask.pk %}" class="btn-icon edit" title="Edit">✏️</a>
+                    <a href="{% url 'subtask_delete' subtask.pk %}" class="btn-icon del" title="Delete">🗑️</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" style="text-align:center; padding:30px; color:#888;">No subtasks found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1&search={{ search }}">« First</a>
+            <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}">Previous</a>
+        {% endif %}
+        <span class="current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&search={{ search }}">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}&search={{ search }}">Last »</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

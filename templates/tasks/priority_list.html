@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Priorities - Hangarin{% endblock %}
+{% block content %}
+
+<div class="top-bar">
+    <div class="page-title">
+        <h2>Priority Manager</h2>
+        <p>Manage priority levels for your tasks.</p>
+    </div>
+    <div style="display:flex; gap:10px;">
+        <a href="{% url 'priority_create' %}" class="btn-new">+ New Priority</a>
+        <a href="{% url 'priority_list' %}" class="btn-clear">↺ Clear</a>
+    </div>
+</div>
+
+<div class="filter-bar">
+    <form method="get" style="display:flex; gap:12px; align-items:center; width:100%;">
+        <input type="text" name="search" value="{{ search }}" placeholder="Search priorities...">
+        <button type="submit" class="btn btn-primary">Apply</button>
+    </form>
+</div>
+
+<div class="card">
+    <table class="dark-table" style="width:100%; border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for priority in page_obj %}
+            <tr>
+                <td style="font-weight:600;">{{ priority.name }}</td>
+                <td>
+                    <a href="{% url 'priority_update' priority.pk %}" class="btn-icon edit" title="Edit">✏️</a>
+                    <a href="{% url 'priority_delete' priority.pk %}" class="btn-icon del" title="Delete">🗑️</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="2" style="text-align:center; padding:30px; color:#888;">No priorities found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1&search={{ search }}">« First</a>
+            <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}">Previous</a>
+        {% endif %}
+        <span class="current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&search={{ search }}">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}&search={{ search }}">Last »</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
