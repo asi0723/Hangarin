@@ -9,12 +9,14 @@ def dashboard(request):
     pending_tasks = Task.objects.filter(status='Pending').count()
     current_year = timezone.now().year
     tasks_this_year = Task.objects.filter(created_at__year=current_year).count()
+    recent_tasks = Task.objects.all().order_by('-created_at')[:5]
 
     context = {
         'total_tasks': total_tasks,
         'completed_tasks': completed_tasks,
         'pending_tasks': pending_tasks,
         'tasks_this_year': tasks_this_year,
+        'recent_tasks': recent_tasks,
     }
     return render(request, 'tasks/dashboard.html', context)
 

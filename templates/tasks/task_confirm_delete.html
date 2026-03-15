@@ -1,30 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Delete Task</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #f4f6f9; }
-        .navbar { background: #2c3e50; color: white; padding: 15px 30px; font-size: 20px; font-weight: bold; }
-        .container { max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; }
-        h2 { margin-bottom: 15px; color: #e74c3c; }
-        p { margin-bottom: 25px; color: #555; }
-        .btn { padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; text-decoration: none; font-size: 14px; }
-        .btn-danger { background: #e74c3c; color: white; }
-        .btn-secondary { background: #95a5a6; color: white; margin-left: 10px; }
-    </style>
-</head>
-<body>
-<div class="navbar">📋 Hangarin</div>
-<div class="container">
+{% extends 'base.html' %}
+{% block title %}Delete Task - Hangarin{% endblock %}
+{% block content %}
+
+<div class="page-header">
     <h2>Delete Task</h2>
-    <p>Are you sure you want to delete <strong>{{ task.title }}</strong>?</p>
-    <form method="post">
+</div>
+
+<div class="card" style="max-width:500px; text-align:center;">
+    <div style="font-size:50px; margin-bottom:15px;">🗑️</div>
+    <h3 style="margin-bottom:10px; color:#f72585;">Are you sure?</h3>
+    <p style="color:#666; margin-bottom:25px;">You are about to delete <strong>{{ task.title }}</strong>. This cannot be undone.</p>
+    <form method="post" style="display:flex; gap:10px; justify-content:center;">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Yes, Delete</button>
         <a href="{% url 'task_list' %}" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
-</body>
-</html>
+
+{% endblock %}
