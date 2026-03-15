@@ -20,8 +20,38 @@ def dashboard(request):
 
 
 def task_list(request):
-    tasks = Task.objects.all().order_by('-created_at')
-    return render(request, 'tasks/task_list.html', {'tasks': tasks})
+    tasks = Task.objects.all()
+
+    # Search
+    search = request.GET.get('search', '')
+    if search:
+        tasks = tasks.filter(
+            title__icontains=search
+        ) | tasks.filter(
+            description__icontains=search
+        ) | tasks.filter(
+            category__name__icontains=search
+        )
+
+    # Sort
+    sort = request.GET.get('sort', '-created_at')
+    allowed_sorts = ['title', '-title', 'created_at', '-created_at', 
+                     'deadline', '-deadline', 'status', '-status']
+    if sort in allowed_sorts:
+        tasks = tasks.order_by(sort)
+
+    # Pagination
+    from django.core.paginator import Paginator
+    paginator = Paginator(tasks, 10)  # 10 tasks per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'search': search,
+        'sort': sort,
+    }
+    return render(request, 'tasks/task_list.html', context)
 
 
 def task_create(request):
