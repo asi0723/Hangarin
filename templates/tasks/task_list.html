@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f4f6f9; }
+        .navbar { background: #2c3e50; color: white; padding: 15px 30px; font-size: 20px; font-weight: bold; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        th { background: #2c3e50; color: white; padding: 12px 15px; text-align: left; }
+        td { padding: 12px 15px; border-bottom: 1px solid #eee; }
+        tr:hover { background: #f9f9f9; }
+        .btn { padding: 8px 14px; border-radius: 5px; border: none; cursor: pointer; text-decoration: none; font-size: 13px; }
+        .btn-primary { background: #3498db; color: white; }
+        .btn-warning { background: #f39c12; color: white; }
+        .btn-danger { background: #e74c3c; color: white; }
+        .btn-success { background: #2ecc71; color: white; }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; }
+        .badge-pending { background: #ffeeba; color: #856404; }
+        .badge-progress { background: #bee5eb; color: #0c5460; }
+        .badge-completed { background: #c3e6cb; color: #155724; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { color: white; text-decoration: none; }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    📋 Hangarin
+    <span class="nav-links" style="float:right; font-size:15px;">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'task_list' %}">Tasks</a>
+    </span>
+</div>
+<div class="container">
+    <div class="top">
+        <h2>All Tasks</h2>
+        <a href="{% url 'task_create' %}" class="btn btn-primary">+ Add Task</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Category</th>
+                <th>Deadline</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td><a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a></td>
+                <td>
+                    {% if task.status == 'Completed' %}
+                        <span class="badge badge-completed">Completed</span>
+                    {% elif task.status == 'In Progress' %}
+                        <span class="badge badge-progress">In Progress</span>
+                    {% else %}
+                        <span class="badge badge-pending">Pending</span>
+                    {% endif %}
+                </td>
+                <td>{{ task.priority }}</td>
+                <td>{{ task.category }}</td>
+                <td>{{ task.deadline|date:"M d, Y" }}</td>
+                <td>
+                    <a href="{% url 'task_update' task.pk %}" class="btn btn-warning">Edit</a>
+                    <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6" style="text-align:center;">No tasks found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

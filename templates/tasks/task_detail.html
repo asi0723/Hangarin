@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Detail</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f4f6f9; }
+        .navbar { background: #2c3e50; color: white; padding: 15px 30px; font-size: 20px; font-weight: bold; }
+        .container { max-width: 700px; margin: 40px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h2 { margin-bottom: 20px; color: #2c3e50; }
+        .info { margin-bottom: 12px; }
+        .info span { font-weight: bold; color: #555; }
+        .btn { padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; text-decoration: none; font-size: 14px; }
+        .btn-warning { background: #f39c12; color: white; }
+        .btn-secondary { background: #95a5a6; color: white; margin-left: 10px; }
+    </style>
+</head>
+<body>
+<div class="navbar">📋 Hangarin</div>
+<div class="container">
+    <h2>{{ task.title }}</h2>
+    <div class="info"><span>Status:</span> {{ task.status }}</div>
+    <div class="info"><span>Priority:</span> {{ task.priority }}</div>
+    <div class="info"><span>Category:</span> {{ task.category }}</div>
+    <div class="info"><span>Deadline:</span> {{ task.deadline|date:"M d, Y H:i" }}</div>
+    <div class="info"><span>Description:</span> {{ task.description }}</div>
+    <br>
+    <a href="{% url 'task_update' task.pk %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'task_list' %}" class="btn btn-secondary">Back</a>
+</div>
+</body>
+</html>
