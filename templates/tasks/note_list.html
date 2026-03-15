@@ -38,8 +38,8 @@
                 <td>{{ note.content|truncatechars:80 }}</td>
                 <td>{{ note.created_at|date:"M d, Y" }}</td>
                 <td>
-                    <a href="{% url 'note_update' note.pk %}" class="btn-icon edit" title="Edit">✏️</a>
-                    <a href="{% url 'note_delete' note.pk %}" class="btn-icon del" title="Delete">🗑️</a>
+                    <a href="{% url 'note_update' note.pk %}" class="btn" style="background:#17a589; color:white;">Edit</a>
+                    <a href="{% url 'note_delete' note.pk %}" class="btn" style="background:#e74c3c; color:white;">Delete</a>
                 </td>
             </tr>
             {% empty %}

@@ -33,8 +33,8 @@
             <tr>
                 <td style="font-weight:600;">{{ category.name }}</td>
                 <td>
-                    <a href="{% url 'category_update' category.pk %}" class="btn-icon edit" title="Edit">✏️</a>
-                    <a href="{% url 'category_delete' category.pk %}" class="btn-icon del" title="Delete">🗑️</a>
+                    <a href="{% url 'category_update' category.pk %}" class="btn" style="background:#17a589; color:white;">Edit</a>
+                    <a href="{% url 'category_delete' category.pk %}" class="btn" style="background:#e74c3c; color:white;">Delete</a>
                 </td>
             </tr>
             {% empty %}

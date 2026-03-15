@@ -84,8 +84,8 @@
         }
         .btn:hover { opacity: 0.85; }
         .btn-primary { background: #4361ee; color: white; }
-        .btn-warning { background: #f8961e; color: white; }
-        .btn-danger { background: #f72585; color: white; }
+        .btn-warning { background: #17a589; color: white; }
+        .btn-danger { background: #e74c3c; color: white; }
         .btn-secondary { background: #6c757d; color: white; }
         .btn-success { background: #4cc9a0; color: white; }
 
@@ -262,7 +262,7 @@
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <div class="logo">📋 <span>Hangarin</span></div>
+    <div class="logo" style="color:white;"> Hangarin</div>
     <div class="nav-links">
         <a href="{% url 'dashboard' %}">Dashboard</a>
         <a href="{% url 'task_list' %}">Tasks</a>
@@ -276,20 +276,20 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="section-title">Main</div>
-        <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+        <a href="{% url 'dashboard' %}"> Dashboard</a>
 
         <div class="section-title">Tasks</div>
-        <a href="{% url 'task_list' %}">📝 All Tasks</a>
-        <a href="{% url 'task_create' %}">➕ Add Task</a>
+        <a href="{% url 'task_list' %}"> All Tasks</a>
+        <a href="{% url 'task_create' %}"> Add Task</a>
 
         <div class="section-title">Manage</div>
-        <a href="{% url 'subtask_list' %}">🔖 SubTasks</a>
-        <a href="{% url 'note_list' %}">📓 Notes</a>
-        <a href="{% url 'category_list' %}">🗂️ Categories</a>
-        <a href="{% url 'priority_list' %}">⚡ Priorities</a>
+        <a href="{% url 'subtask_list' %}">SubTasks</a>
+        <a href="{% url 'note_list' %}"> Notes</a>
+        <a href="{% url 'category_list' %}"> Categories</a>
+        <a href="{% url 'priority_list' %}"> Priorities</a>
 
         <div class="section-title">System</div>
-        <a href="/admin">⚙️ Admin Panel</a>
+        <a href="/admin"> Admin Panel</a>
     </div>
 
     <!-- CONTENT -->
