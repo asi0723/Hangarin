@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangarin - Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f4f6f9; }
+
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            font-size: 40px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .card.total { border-top: 4px solid #3498db; }
+        .card.completed { border-top: 4px solid #2ecc71; }
+        .card.pending { border-top: 4px solid #e74c3c; }
+        .card.year { border-top: 4px solid #f39c12; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">📋 Hangarin - Task Manager</div>
+
+<div class="container">
+    <h2>Dashboard Overview</h2>
+    <div class="cards">
+        <div class="card total">
+            <h3>Total Tasks</h3>
+            <p>{{ total_tasks }}</p>
+        </div>
+        <div class="card completed">
+            <h3>Completed</h3>
+            <p>{{ completed_tasks }}</p>
+        </div>
+        <div class="card pending">
+            <h3>Pending</h3>
+            <p>{{ pending_tasks }}</p>
+        </div>
+        <div class="card year">
+            <h3>This Year</h3>
+            <p>{{ tasks_this_year }}</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
