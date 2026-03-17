@@ -12,7 +12,29 @@
     <form method="get" style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
         <input type="text" name="search" placeholder="Search title, category, description..."
                value="{{ search }}"
-               style="padding:9px 14px; border:1px solid #ddd; border-radius:8px; font-size:14px; width:320px;">
+               style="padding:9px 14px; border:1px solid #ddd; border-radius:8px; font-size:14px; width:280px;">
+
+        <select name="status" style="padding:9px 14px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+            <option value="">All Status</option>
+            <option value="Pending" {% if request.GET.status == 'Pending' %}selected{% endif %}>Pending</option>
+            <option value="In Progress" {% if request.GET.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+            <option value="Completed" {% if request.GET.status == 'Completed' %}selected{% endif %}>Completed</option>
+        </select>
+
+        <select name="priority" style="padding:9px 14px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+            <option value="">All Priority</option>
+            {% for p in priorities %}
+            <option value="{{ p.id }}" {% if request.GET.priority == p.id|stringformat:"s" %}selected{% endif %}>{{ p.name }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="category" style="padding:9px 14px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+            <option value="">All Category</option>
+            {% for c in categories %}
+            <option value="{{ c.id }}" {% if request.GET.category == c.id|stringformat:"s" %}selected{% endif %}>{{ c.name }}</option>
+            {% endfor %}
+        </select>
+
         <select name="sort" style="padding:9px 14px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
             <option value="-created_at" {% if sort == '-created_at' %}selected{% endif %}>Newest First</option>
             <option value="created_at" {% if sort == 'created_at' %}selected{% endif %}>Oldest First</option>
@@ -22,6 +44,7 @@
             <option value="-deadline" {% if sort == '-deadline' %}selected{% endif %}>Deadline Latest</option>
             <option value="status" {% if sort == 'status' %}selected{% endif %}>Status</option>
         </select>
+
         <button type="submit" class="btn btn-primary">Search</button>
         <a href="{% url 'task_list' %}" class="btn btn-secondary">Reset</a>
     </form>
@@ -57,8 +80,8 @@
                 <td>{{ task.category }}</td>
                 <td>{{ task.deadline|date:"M d, Y" }}</td>
                 <td style="display:flex; gap:6px;">
-                    <a href="{% url 'task_update' task.pk %}" class="btn btn-warning">Edit</a>
-                    <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'task_update' task.pk %}" class="btn" style="background:#17a589; color:white;">Edit</a>
+                    <a href="{% url 'task_delete' task.pk %}" class="btn" style="background:#e74c3c; color:white;">Delete</a>
                 </td>
             </tr>
             {% empty %}

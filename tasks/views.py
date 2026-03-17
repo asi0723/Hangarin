@@ -27,19 +27,38 @@ def dashboard(request):
 def task_list(request):
     tasks = Task.objects.all()
     search = request.GET.get('search', '')
+    status_filter = request.GET.get('status', '')
+    priority_filter = request.GET.get('priority', '')
+    category_filter = request.GET.get('category', '')
+
     if search:
         tasks = tasks.filter(title__icontains=search) | \
                 tasks.filter(description__icontains=search) | \
                 tasks.filter(category__name__icontains=search)
+    if status_filter:
+        tasks = tasks.filter(status=status_filter)
+    if priority_filter:
+        tasks = tasks.filter(priority__id=priority_filter)
+    if category_filter:
+        tasks = tasks.filter(category__id=category_filter)
+
     sort = request.GET.get('sort', '-created_at')
     allowed_sorts = ['title', '-title', 'created_at', '-created_at',
                      'deadline', '-deadline', 'status', '-status']
     if sort in allowed_sorts:
         tasks = tasks.order_by(sort)
+
     paginator = Paginator(tasks, 10)
     page_obj = paginator.get_page(request.GET.get('page'))
-    return render(request, 'tasks/task_list.html', {'page_obj': page_obj, 'search': search, 'sort': sort})
 
+    context = {
+        'page_obj': page_obj,
+        'search': search,
+        'sort': sort,
+        'priorities': Priority.objects.all(),
+        'categories': Category.objects.all(),
+    }
+    return render(request, 'tasks/task_list.html', context)
 def task_create(request):
     form = TaskForm(request.POST or None)
     if form.is_valid():
