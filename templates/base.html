@@ -261,36 +261,31 @@
 <body>
 
 <!-- NAVBAR -->
-<div class="navbar">
-    <div class="logo" style="color:white;"> Hangarin</div>
-    <div class="nav-links">
-        <a href="{% url 'dashboard' %}">Dashboard</a>
-        <a href="{% url 'task_list' %}">Tasks</a>
-        <a href="/admin">Admin</a>
-    </div>
+<div class="nav-links">
+    <span style="color:#888; font-size:13px;">Welcome, {{ request.user.username }}</span>
 </div>
 
 <!-- LAYOUT -->
 <div class="layout">
 
-    <!-- SIDEBAR -->
     <div class="sidebar">
-        <div class="section-title">Main</div>
-        <a href="{% url 'dashboard' %}"> Dashboard</a>
+    <div class="section-title">Main</div>
+    <a href="{% url 'dashboard' %}"> Dashboard</a>
 
-        <div class="section-title">Tasks</div>
-        <a href="{% url 'task_list' %}"> All Tasks</a>
-        <a href="{% url 'task_create' %}"> Add Task</a>
+    <div class="section-title">Tasks</div>
+    <a href="{% url 'task_list' %}"> All Tasks</a>
+    <a href="{% url 'task_create' %}">➕ Add Task</a>
 
-        <div class="section-title">Manage</div>
-        <a href="{% url 'subtask_list' %}">SubTasks</a>
-        <a href="{% url 'note_list' %}"> Notes</a>
-        <a href="{% url 'category_list' %}"> Categories</a>
-        <a href="{% url 'priority_list' %}"> Priorities</a>
+    <div class="section-title">Manage</div>
+    <a href="{% url 'subtask_list' %}"> SubTasks</a>
+    <a href="{% url 'note_list' %}"> Notes</a>
+    <a href="{% url 'category_list' %}"> Categories</a>
+    <a href="{% url 'priority_list' %}"> Priorities</a>
 
-        <div class="section-title">System</div>
-        <a href="/admin"> Admin Panel</a>
-    </div>
+    <div class="section-title">System</div>
+    <a href="/admin"> Admin Panel</a>
+    <a href="{% url 'account_logout' %}"> Logout</a>
+</div>
 
     <!-- CONTENT -->
     <div class="main">

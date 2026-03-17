@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout - Hangarin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0f0f1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .box {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 45px 40px;
+            width: 420px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .brand h1 { font-size: 32px; font-weight: 900; color: white; margin-bottom: 5px; }
+        .brand p {
+            color: #4cc9f0;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        h2 { color: white; font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+        p { color: #888; font-size: 14px; margin-bottom: 30px; }
+        .btn-logout {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #f72585, #e74c3c);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-logout:hover { opacity: 0.88; }
+        .back-link { margin-top: 15px; font-size: 13px; color: #555; }
+        .back-link a { color: #4cc9f0; text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="brand">
+        <h1>Hangarin</h1>
+        <p>Task & To-Do Manager</p>
+    </div>
+
+    <h2>Sign Out</h2>
+    <p>Are you sure you want to sign out of Hangarin?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn-logout">Yes, Sign Out</button>
+    </form>
+
+    <div class="back-link">
+        <a href="{% url 'dashboard' %}">← Back to Dashboard</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Hangarin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0f0f1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .wrapper {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 45px 40px;
+            width: 460px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        }
+        .brand h1 { font-size: 32px; font-weight: 900; color: white; }
+        .brand p {
+            color: #4cc9f0;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+        .signin-title h2 { font-size: 26px; font-weight: 800; color: white; margin-bottom: 5px; }
+        .signin-title p { color: #888; font-size: 13px; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 700;
+            font-size: 12px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            font-size: 14px;
+            background: rgba(255,255,255,0.04);
+            color: white;
+        }
+        .form-group input::placeholder { color: #444; }
+        .form-group input:focus {
+            outline: none;
+            border-color: #4cc9f0;
+            box-shadow: 0 0 0 3px rgba(76,201,240,0.1);
+        }
+        .btn-register {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #4361ee, #4cc9f0);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: opacity 0.2s;
+        }
+        .btn-register:hover { opacity: 0.88; }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #555;
+        }
+        .login-link a { color: #4cc9f0; font-weight: 700; text-decoration: none; }
+        .errorlist {
+            color: #f72585;
+            font-size: 12px;
+            list-style: none;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="brand">
+        <h1>Hangarin</h1>
+        <p>Task & To-Do Manager</p>
+    </div>
+
+    <div class="signin-title">
+        <h2>Create Account</h2>
+        <p>Sign up to start managing your tasks.</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label>{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <ul class="errorlist">
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn-register">Create Account</button>
+    </form>
+
+    <div class="login-link">
+        Already have an account? <a href="{% url 'account_login' %}">Sign In</a>
+    </div>
+</div>
+</body>
+</html>

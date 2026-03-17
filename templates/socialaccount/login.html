@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In Via GitHub - Hangarin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #0f0f1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .box {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 45px 40px;
+            width: 460px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .brand h1 { font-size: 32px; font-weight: 900; color: white; margin-bottom: 5px; }
+        .brand p {
+            color: #4cc9f0;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        .github-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 1px solid rgba(139,92,246,0.3);
+        }
+        h2 { color: white; font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+        p { color: #888; font-size: 14px; margin-bottom: 30px; line-height: 1.6; }
+        .btn-continue {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #4361ee, #4cc9f0);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-continue:hover { opacity: 0.88; }
+        .back-link { margin-top: 15px; font-size: 13px; color: #555; }
+        .back-link a { color: #4cc9f0; text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="brand">
+        <h1>Hangarin</h1>
+        <p>Task & To-Do Manager</p>
+    </div>
+
+    <div class="github-icon">
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="white">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+    </div>
+
+    <h2>Sign In Via GitHub</h2>
+    <p>You are about to sign in using your GitHub account. Click continue to proceed.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-continue">Continue with GitHub</button>
+    </form>
+
+    <div class="back-link">
+        <a href="{% url 'account_login' %}">← Back to Login</a>
+    </div>
+</div>
+</body>
+</html>

@@ -3,9 +3,10 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 from .models import Task, SubTask, Note, Category, Priority
 from .forms import TaskForm, SubTaskForm, NoteForm, CategoryForm, PriorityForm
-
+from django.contrib.auth.decorators import login_required
 
 # ─── DASHBOARD ───────────────────────────────────────────
+@login_required
 def dashboard(request):
     total_tasks = Task.objects.count()
     completed_tasks = Task.objects.filter(status='Completed').count()
