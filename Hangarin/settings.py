@@ -87,11 +87,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# Detect environment automatically
 if os.environ.get('SERVER_SOFTWARE', '').startswith('Apache'):
-    SITE_ID = 1  # asi0723.pythonanywhere.com
+    SITE_ID = 2  # asi0723.pythonanywhere.com
 else:
-    SITE_ID = 3  # http://127.0.0.1:8000
+    SITE_ID = 1  # http://127.0.0.1:8000
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
