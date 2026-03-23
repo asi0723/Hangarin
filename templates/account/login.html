@@ -23,7 +23,6 @@
             overflow: hidden;
             box-shadow: 0 8px 40px rgba(0,0,0,0.5);
         }
-        /* LEFT PANEL */
         .left-panel {
             background: #1a1a2e;
             flex: 1;
@@ -32,12 +31,7 @@
             flex-direction: column;
             justify-content: center;
         }
-        .brand h1 {
-            font-size: 38px;
-            font-weight: 900;
-            color: white;
-            letter-spacing: 1px;
-        }
+        .brand h1 { font-size: 38px; font-weight: 900; color: white; letter-spacing: 1px; }
         .brand p {
             color: #4cc9f0;
             font-size: 11px;
@@ -45,17 +39,8 @@
             text-transform: uppercase;
             margin-bottom: 35px;
         }
-        .signin-title h2 {
-            font-size: 28px;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 5px;
-        }
-        .signin-title p {
-            color: #888;
-            font-size: 13px;
-            margin-bottom: 28px;
-        }
+        .signin-title h2 { font-size: 28px; font-weight: 800; color: white; margin-bottom: 5px; }
+        .signin-title p { color: #888; font-size: 13px; margin-bottom: 28px; }
         .btn-social {
             width: 100%;
             padding: 13px;
@@ -75,84 +60,15 @@
             transition: background 0.2s;
         }
         .btn-social:hover { background: rgba(255,255,255,0.1); }
-        .btn-social.github { border-color: rgba(139,92,246,0.4); }
-        .btn-social.email { border-color: rgba(76,201,240,0.4); }
-        .divider {
-            text-align: center;
-            color: #444;
-            font-size: 12px;
-            margin: 18px 0;
-            position: relative;
-        }
-        .divider::before, .divider::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 44%;
-            height: 1px;
-            background: #2a2a4a;
-        }
-        .divider::before { left: 0; }
-        .divider::after { right: 0; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: 700;
-            font-size: 12px;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 10px;
-            font-size: 14px;
-            background: rgba(255,255,255,0.04);
-            color: white;
-            transition: border 0.2s;
-        }
-        .form-group input::placeholder { color: #444; }
-        .form-group input:focus {
-            outline: none;
-            border-color: #4cc9f0;
-            box-shadow: 0 0 0 3px rgba(76,201,240,0.1);
-        }
-        .btn-login {
-            width: 100%;
-            padding: 13px;
-            background: linear-gradient(135deg, #4361ee, #4cc9f0);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 8px;
-            transition: opacity 0.2s;
-        }
-        .btn-login:hover { opacity: 0.88; }
+        .btn-social.google { border-color: rgba(234,67,53,0.4); }
         .signup-link {
             text-align: center;
             margin-top: 20px;
             font-size: 13px;
             color: #555;
         }
-        .signup-link a {
-            color: #4cc9f0;
-            font-weight: 700;
-            text-decoration: none;
-        }
+        .signup-link a { color: #4cc9f0; font-weight: 700; text-decoration: none; }
         .signup-link a:hover { color: white; }
-        .errorlist {
-            color: #f72585;
-            font-size: 12px;
-            list-style: none;
-            margin-top: 4px;
-        }
-        /* RIGHT PANEL */
         .right-panel {
             background: #16213e;
             width: 320px;
@@ -162,166 +78,71 @@
             justify-content: center;
             border-left: 1px solid rgba(255,255,255,0.05);
         }
-        .right-panel h3 {
-            color: white;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .right-panel p {
-            color: #666;
-            font-size: 13px;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
+        .right-panel h3 { color: white; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+        .right-panel p { color: #666; font-size: 13px; margin-bottom: 30px; line-height: 1.6; }
+        .feature { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
         .feature-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            width: 40px; height: 40px; border-radius: 10px;
             background: rgba(67,97,238,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; flex-shrink: 0;
         }
-        .feature-text h4 {
-            color: white;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-        .feature-text p {
-            color: #555;
-            font-size: 12px;
-            margin: 0;
-        }
+        .feature-text h4 { color: white; font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+        .feature-text p { color: #555; font-size: 12px; margin: 0; }
     </style>
 </head>
 <body>
 <div class="wrapper">
-
-    <!-- LEFT: LOGIN FORM -->
     <div class="left-panel">
         <div class="brand">
             <h1>Hangarin</h1>
             <p>Task & To-Do Manager</p>
         </div>
-
         <div class="signin-title">
             <h2>Sign In</h2>
             <p>Welcome back. Please enter your details.</p>
         </div>
 
-        <!-- GitHub Button -->
-        <a href="/accounts/github/login/" class="btn-social github">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        <!-- Google Button Only -->
+        <a href="{% provider_login_url 'google' %}" class="btn-social google">
+            <svg width="18" height="18" viewBox="0 0 24 24">
+                <path fill="#EA4335" d="M5.266 9.765A7.077 7.077 0 0 1 12 4.909c1.69 0 3.218.6 4.418 1.582L19.91 3C17.782 1.145 15.055 0 12 0 7.27 0 3.198 2.698 1.24 6.65l4.026 3.115Z"/>
+                <path fill="#34A853" d="M16.04 18.013c-1.09.703-2.474 1.078-4.04 1.078a7.077 7.077 0 0 1-6.723-4.823l-4.04 3.067A11.965 11.965 0 0 0 12 24c2.933 0 5.735-1.043 7.834-3l-3.793-2.987Z"/>
+                <path fill="#4A90E2" d="M19.834 21c2.195-2.048 3.62-5.096 3.62-9 0-.71-.109-1.473-.272-2.182H12v4.637h6.436c-.317 1.559-1.17 2.766-2.395 3.558L19.834 21Z"/>
+                <path fill="#FBBC05" d="M5.277 14.268A7.12 7.12 0 0 1 4.909 12c0-.782.125-1.533.357-2.235L1.24 6.65A11.934 11.934 0 0 0 0 12c0 1.92.445 3.73 1.237 5.335l4.04-3.067Z"/>
             </svg>
-            Continue with GitHub
+            Continue with Google
         </a>
-
-        <!-- Email Button (toggles form) -->
-        <a href="#" class="btn-social email" onclick="toggleForm(event)">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            Continue with Email
-        </a>
-
-        <!-- Email Form (hidden by default) -->
-        <div id="email-form" style="display:none;">
-            <div class="divider">enter your details</div>
-            <form method="post">
-                {% csrf_token %}
-                {% for field in form %}
-                <div class="form-group">
-                    <label>{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.errors %}
-                        <ul class="errorlist">
-                            {% for error in field.errors %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-                {% endfor %}
-                <button type="submit" class="btn-login">Sign In</button>
-            </form>
-        </div>
 
         <div class="signup-link">
             Don't have an account? <a href="{% url 'account_signup' %}">Register</a>
         </div>
     </div>
 
-    <!-- RIGHT: FEATURES PANEL -->
     <div class="right-panel">
         <h3>Why Hangarin?</h3>
         <p>Everything you need to stay organized and productive.</p>
-
         <div class="feature">
             <div class="feature-icon">📝</div>
-            <div class="feature-text">
-                <h4>Task Management</h4>
-                <p>Create and organize tasks easily</p>
-            </div>
+            <div class="feature-text"><h4>Task Management</h4><p>Create and organize tasks easily</p></div>
         </div>
-
         <div class="feature">
             <div class="feature-icon">🔖</div>
-            <div class="feature-text">
-                <h4>SubTasks</h4>
-                <p>Break down tasks into smaller steps</p>
-            </div>
+            <div class="feature-text"><h4>SubTasks</h4><p>Break down tasks into smaller steps</p></div>
         </div>
-
         <div class="feature">
             <div class="feature-icon">📓</div>
-            <div class="feature-text">
-                <h4>Notes</h4>
-                <p>Keep important notes with your tasks</p>
-            </div>
+            <div class="feature-text"><h4>Notes</h4><p>Keep important notes with your tasks</p></div>
         </div>
-
         <div class="feature">
             <div class="feature-icon">⚡</div>
-            <div class="feature-text">
-                <h4>Priorities</h4>
-                <p>Focus on what matters most</p>
-            </div>
+            <div class="feature-text"><h4>Priorities</h4><p>Focus on what matters most</p></div>
         </div>
-
         <div class="feature">
             <div class="feature-icon">🗂️</div>
-            <div class="feature-text">
-                <h4>Categories</h4>
-                <p>Organize tasks by category</p>
-            </div>
+            <div class="feature-text"><h4>Categories</h4><p>Organize tasks by category</p></div>
         </div>
     </div>
-
 </div>
-
-<script>
-    function toggleForm(e) {
-        e.preventDefault();
-        const form = document.getElementById('email-form');
-        form.style.display = form.style.display === 'none' ? 'block' : 'none';
-    }
-
-    // Auto show form if there are errors
-    {% if form.errors %}
-    document.getElementById('email-form').style.display = 'block';
-    {% endif %}
-</script>
 </body>
 </html>
