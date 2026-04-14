@@ -14,9 +14,10 @@
         /* =====================
            DESKTOP STYLES
         ===================== */
-        .mobile-navbar { display: none; }
-        .overlay { display: none; }
-        .bottom-nav { display: none; }
+        .mobile-navbar { display: none !important; }
+        .mobile-drawer { display: none !important; }
+        .overlay { display: none !important; }
+        .bottom-nav { display: none !important; }
 
         /* DESKTOP NAVBAR */
         .desktop-navbar {
@@ -252,12 +253,12 @@
         @media (max-width: 768px) {
 
             /* Hide desktop elements */
-            .sidebar { display: none; }
+            .sidebar { display: none !important; }
             .desktop-navbar { display: none !important; }
 
-            /* Mobile top navbar */
+            /* Show mobile navbar */
             .mobile-navbar {
-                display: flex;
+                display: flex !important;
                 background: #1a1a2e;
                 color: white;
                 padding: 0 20px;
@@ -290,6 +291,7 @@
 
             /* Slide-out drawer */
             .mobile-drawer {
+                display: block !important;
                 position: fixed;
                 top: 0;
                 left: -280px;
@@ -342,14 +344,14 @@
 
             /* Dark overlay */
             .overlay {
-                display: none;
+                display: none !important;
                 position: fixed;
                 top: 0; left: 0;
                 width: 100%; height: 100%;
                 background: rgba(0,0,0,0.5);
                 z-index: 998;
             }
-            .overlay.show { display: block; }
+            .overlay.show { display: block !important; }
 
             /* Layout */
             .layout {
@@ -397,7 +399,7 @@
     <span class="welcome">👤 {{ request.user.username }}</span>
 </div>
 
-<!-- MOBILE DRAWER (full sidebar) -->
+<!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="mobileDrawer">
     <div class="drawer-header">
         <span class="logo">Han<span>garin</span></span>
@@ -426,7 +428,7 @@
 <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
 
 <!-- DESKTOP NAVBAR -->
-<div class="desktop-navbar" style="background:#1a1a2e; padding: 0 30px; height:60px; display:flex; align-items:center;">
+<div class="desktop-navbar">
     <span style="color:#888; font-size:13px;">Welcome, {{ request.user.username }}</span>
 </div>
 
