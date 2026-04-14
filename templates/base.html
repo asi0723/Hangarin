@@ -361,15 +361,26 @@
             .main {
                 padding: 12px;
                 padding-bottom: 20px;
+                overflow-x: hidden;
             }
 
-            /* Responsive table */
-            .table-responsive {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
+            /* ── SCROLLABLE TABLES ── */
+            .card { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            table { min-width: 600px; font-size: 12px; }
+            th, td { padding: 10px 10px; white-space: nowrap; }
+
+            /* ── DASHBOARD STAT CARDS ── */
+            .stats-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 10px !important;
+            }
+            .stats-grid .card {
+                min-width: unset !important;
+                overflow-x: hidden !important;
             }
 
-            /* Responsive filter bar */
+            /* ── FILTER BAR ── */
             .filter-bar {
                 flex-wrap: wrap;
                 gap: 8px;
@@ -378,15 +389,12 @@
             .filter-bar input[type="text"] { width: 100%; }
             .filter-bar select { width: 100%; }
 
-            .card { padding: 15px; }
-
-            .top-bar {
-                flex-direction: column;
-                gap: 10px;
-            }
-
+            /* ── MISC ── */
+            .card { padding: 12px; }
+            .top-bar { flex-direction: column; gap: 10px; }
             .page-title h2 { font-size: 20px; }
             .page-header h2 { font-size: 18px; }
+            .btn-new { font-size: 13px; padding: 8px 14px; }
         }
     </style>
 </head>
