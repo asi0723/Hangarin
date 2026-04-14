@@ -259,36 +259,143 @@
             color: white;
             border-color: #4361ee;
         }
+
+        /* MOBILE TOP NAVBAR */
+        .mobile-navbar {
+            display: none;
+            background: #1a1a2e;
+            color: white;
+            padding: 0 20px;
+            height: 56px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .mobile-navbar .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+        .mobile-navbar .logo span { color: #4cc9f0; }
+        .mobile-navbar .welcome {
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        /* BOTTOM NAVIGATION (mobile) */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #16213e;
+            height: 65px;
+            z-index: 1000;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .bottom-nav a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 10px;
+            gap: 4px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+        .bottom-nav a:hover, .bottom-nav a.active { color: #4cc9f0; }
+        .bottom-nav a .icon { font-size: 22px; }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            /* Hide desktop elements */
+            .sidebar { display: none; }
+            .nav-links { display: none; }
+
+            /* Show mobile elements */
+            .mobile-navbar { display: flex; }
+            .bottom-nav { display: flex; }
+
+            /* Adjust layout */
+            .layout {
+                flex-direction: column;
+                min-height: calc(100vh - 56px);
+            }
+            .main {
+                padding: 15px;
+                padding-bottom: 80px;
+            }
+
+            /* Responsive table */
+            table { font-size: 13px; }
+            th, td { padding: 10px 8px; }
+
+            /* Responsive filter bar */
+            .filter-bar {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .filter-bar input[type="text"] { width: 100%; }
+
+            /* Responsive cards */
+            .card { padding: 15px; }
+
+            /* Responsive top bar */
+            .top-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            /* Responsive page title */
+            .page-title h2 { font-size: 20px; }
+        }
     </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<div class="nav-links">
+<!-- MOBILE TOP NAVBAR -->
+<div class="mobile-navbar">
+    <span class="logo">Han<span>garin</span></span>
+    <span class="welcome">Welcome, {{ request.user.username }}</span>
+</div>
+
+<!-- DESKTOP NAVBAR -->
+<div class="nav-links" style="background:#1a1a2e; padding: 0 30px; height:60px; display:flex; align-items:center;">
     <span style="color:#888; font-size:13px;">Welcome, {{ request.user.username }}</span>
 </div>
 
 <!-- LAYOUT -->
 <div class="layout">
 
+    <!-- DESKTOP SIDEBAR -->
     <div class="sidebar">
-    <div class="section-title">Main</div>
-    <a href="{% url 'dashboard' %}"> Dashboard</a>
+        <div class="section-title">Main</div>
+        <a href="{% url 'dashboard' %}"> Dashboard</a>
 
-    <div class="section-title">Tasks</div>
-    <a href="{% url 'task_list' %}"> All Tasks</a>
-    <a href="{% url 'task_create' %}">➕ Add Task</a>
+        <div class="section-title">Tasks</div>
+        <a href="{% url 'task_list' %}"> All Tasks</a>
+        <a href="{% url 'task_create' %}">➕ Add Task</a>
 
-    <div class="section-title">Manage</div>
-    <a href="{% url 'subtask_list' %}"> SubTasks</a>
-    <a href="{% url 'note_list' %}"> Notes</a>
-    <a href="{% url 'category_list' %}"> Categories</a>
-    <a href="{% url 'priority_list' %}"> Priorities</a>
+        <div class="section-title">Manage</div>
+        <a href="{% url 'subtask_list' %}"> SubTasks</a>
+        <a href="{% url 'note_list' %}"> Notes</a>
+        <a href="{% url 'category_list' %}"> Categories</a>
+        <a href="{% url 'priority_list' %}"> Priorities</a>
 
-    <div class="section-title">System</div>
-    <a href="/admin"> Admin Panel</a>
-    <a href="{% url 'account_logout' %}"> Logout</a>
-</div>
+        <div class="section-title">System</div>
+        <a href="/admin"> Admin Panel</a>
+        <a href="{% url 'account_logout' %}"> Logout</a>
+    </div>
 
     <!-- CONTENT -->
     <div class="main">
@@ -296,5 +403,30 @@
     </div>
 
 </div>
+
+<!-- MOBILE BOTTOM NAVIGATION -->
+<nav class="bottom-nav">
+    <a href="{% url 'dashboard' %}">
+        <span class="icon"></span>
+        Home
+    </a>
+    <a href="{% url 'task_list' %}">
+        <span class="icon"></span>
+        Tasks
+    </a>
+    <a href="{% url 'task_create' %}">
+        <span class="icon"></span>
+        Add
+    </a>
+    <a href="{% url 'note_list' %}">
+        <span class="icon"></span>
+        Notes
+    </a>
+    <a href="{% url 'account_logout' %}">
+        <span class="icon"></span>
+        Logout
+    </a>
+</nav>
+
 </body>
 </html>
